@@ -10,7 +10,8 @@ buttons.forEach( (button) => {
 
 const results = document.querySelector('.results');
 const score = document.querySelector('.score');
-score.textContent = `You: ${playerScore} Computer: ${computerScore}`;
+
+//Randomise computer player
 function computerPlay(){
     rand =  Math.floor((Math.random() * 3) + 1);
     let result = "";
@@ -28,8 +29,11 @@ function computerPlay(){
     return result;
 }
 
+//Plays a round of RPS
 function playRound(playerSelection)
 {
+    let result = "";
+
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerPlay();
 
@@ -78,16 +82,12 @@ function playRound(playerSelection)
         }
     }
     results.textContent = `You ${result}!, ${signs}`;
-    return result;
+
+    setScore(result);
 }
 
-function game(){
-
-
-
-    
-
-
+//Updates the score and determines winner
+function setScore(result){
     if(result === 'win')
     {
         playerScore++;
@@ -96,19 +96,13 @@ function game(){
     {
         computerScore++;
     }
-    console.log();
-
-    if(playerScore > computerScore)
+    score.textContent = `You: ${playerScore} Computer: ${computerScore}`;
+    if(playerScore == 5)
     {
-        console.log('You won the game with computer!');
+        alert('You won the game with computer!');
     }
-    else if(playerScore < computerScore)
+    else if(computerScore == 5)
     {
-        console.log('You lost the game with computer!');
+        alert('You lost the game with computer!');
     }
-    else
-    {
-        console.log("You drew the game with computer!");
-    }
-    
 }
