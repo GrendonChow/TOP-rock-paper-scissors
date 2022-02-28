@@ -1,3 +1,16 @@
+let playerScore = 0, 
+computerScore = 0;
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach( (button) => {
+    button.addEventListener('click', () => {
+        playRound(button.id);
+        });
+});
+
+const results = document.querySelector('.results');
+const score = document.querySelector('.score');
+score.textContent = `You: ${playerScore} Computer: ${computerScore}`;
 function computerPlay(){
     rand =  Math.floor((Math.random() * 3) + 1);
     let result = "";
@@ -15,9 +28,10 @@ function computerPlay(){
     return result;
 }
 
-function playRound(playerSelection, computerSelection)
+function playRound(playerSelection)
 {
     playerSelection = playerSelection.toLowerCase();
+    computerSelection = computerPlay();
 
     if(playerSelection === computerSelection)
     {
@@ -63,31 +77,26 @@ function playRound(playerSelection, computerSelection)
             signs = playerSelection + ' beats ' + computerSelection;
         }
     }
-    console.log(`You ${result}!, ${signs}`);
+    results.textContent = `You ${result}!, ${signs}`;
     return result;
 }
 
 function game(){
-    let playerScore = 0, 
-        computerScore = 0;
 
-    for(let i = 0; i < 5; i++)
+
+
+    
+
+
+    if(result === 'win')
     {
-        playerSelection = prompt("Choose paper, rock or scissors: ");
-        computerSelection = computerPlay();
-        playRound(playerSelection, computerSelection);
-        if(result === 'win')
-        {
-            playerScore++;
-        }
-        else if(result == 'lose')
-        {
-            computerScore++;
-        }
-        console.log(`Score:
-        You: ${playerScore}
-        Computer: ${computerScore}`);
+        playerScore++;
     }
+    else if(result == 'lose')
+    {
+        computerScore++;
+    }
+    console.log();
 
     if(playerScore > computerScore)
     {
