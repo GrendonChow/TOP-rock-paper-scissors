@@ -1,13 +1,17 @@
 let playerScore = 0, 
 computerScore = 0;
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.getElementById('playButtons').childNodes;
 buttons.forEach( (button) => {
     button.addEventListener('click', () => {
         playRound(button.id);
         });
 });
 
+const reset = document.querySelector('#reset')
+reset.addEventListener('click', ()=> {
+    resetGame();
+});
 const results = document.querySelector('.results');
 const score = document.querySelector('.score');
 
@@ -105,4 +109,13 @@ function setScore(result){
     {
         alert('You lost the game with computer!');
     }
+}
+
+//Used to reset game state
+function resetGame()
+{
+    playerScore = 0;
+    computerScore = 0;
+    score.textContent = `You: ${playerScore} Computer: ${computerScore}`;
+    results.textContent = '';
 }
